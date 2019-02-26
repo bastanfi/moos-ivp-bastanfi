@@ -1,10 +1,14 @@
-// File: PrimeEntry.h
+/************************************************************/
+/*    NAME: Brian Stanfield                                 */
+/*    ORGN: MIT                                             */
+/*    FILE: PrimeEntry.h                                    */
+/*    DATE:                                                 */
+/************************************************************/
 
 #include <string>
 #include <vector>
 #include <cstdint>
 #include "MOOS/libMOOS/MOOSLib.h"
-
 
 #ifndef PRIME_ENTRY_HEADER
 #define PRIME_ENTRY_HEADER
@@ -30,10 +34,9 @@ public:
     unsigned int m_received_index;
 	unsigned int m_calculated_index;
 	double m_start_index;
-	bool m_done; //must be public to be used in iterate function of PrimeFactor
+	bool m_done;
 	uint64_t m_current;
 	uint64_t m_iterations;
 	protected:
-	
 };
 #endif

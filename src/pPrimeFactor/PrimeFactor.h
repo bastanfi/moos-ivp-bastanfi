@@ -1,7 +1,7 @@
 /************************************************************/
-/*    NAME: Brian Stanfield                                              */
+/*    NAME: Brian Stanfield                                 */
 /*    ORGN: MIT                                             */
-/*    FILE: PrimeFactor.h                                          */
+/*    FILE: PrimeFactor.h                                   */
 /*    DATE:                                                 */
 /************************************************************/
 
@@ -32,8 +32,7 @@ class PrimeFactor : public CMOOSApp
  protected:
    void RegisterVariables();
    list<PrimeEntry> m_primes;
-   int m_calc; //similar to m_index, this is a PrimeFactor variable that has to be
-   //initialized to be problerly indexed in the iterate loop
+   int m_calc; 
  private: // Configuration variables
  private: // State variables
 };
