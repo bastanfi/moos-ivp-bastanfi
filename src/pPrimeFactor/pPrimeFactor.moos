@@ -12,7 +12,7 @@ ProcessConfig = ANTLER
   Run = uXMS         @ NewConsole = true
   Run = uTimerScript @ NewConsole = false
   Run = pPrimeFactor @ NewConsole = false
- // Run = pLogger @ NewConsole = false
+  //Run = pLogger @ NewConsole = false
 
 }
 
@@ -22,7 +22,7 @@ ProcessConfig = ANTLER
    AppTick   = 4
    CommsTick = 4
 
-   VAR            = NUM_VALUE, PRIME_RESULT, TROUBLESHOOT
+   VAR            = NUM_VALUE, PRIME_RESULT
 
    history_var =  PRIME_RESULT
  }
@@ -39,7 +39,7 @@ paused = falce
 
 event = var = NUM_VALUE, val = "112582705942171", time = 0.25
 event = var = NUM_VALUE, val = "115797848077099", time = 0.50
-event = var = NUM_VALUE, val = "117463495419966", time = 0.75
+event = var = NUM_VALUE, val = "117463495419967", time = 0.75
 
 event = var = NUM_VALUE, val = "125", time = 1.0
 event = var = NUM_VALUE, val = "225", time = 1.25

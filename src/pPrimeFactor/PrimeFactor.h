@@ -33,6 +33,7 @@ class PrimeFactor : public CMOOSApp
    void RegisterVariables();
    list<PrimeEntry> m_primes;
    int m_calc; 
+   int m_rec;
  private: // Configuration variables
  private: // State variables
 };

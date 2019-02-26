@@ -23,6 +23,7 @@ PrimeFactor::PrimeFactor()
 { 
   list<PrimeEntry> m_primes; //NOT necessary
   m_calc = 0; //necessary: 
+  m_rec = 0;
 }
 
 //---------------------------------------------------------
@@ -38,9 +39,9 @@ bool PrimeFactor::OnNewMail(MOOSMSG_LIST &NewMail)
     if(key == "NUM_VALUE"){
       string sval  = msg.GetString();
       uint64_t orig =  strtoul(sval.c_str(),NULL,0);
-      received_index = received_index + 1;
+      m_rec = m_rec + 1;
       PrimeEntry new_prime;
-      new_prime.setReceivedIndex(received_index);
+      new_prime.setReceivedIndex(m_rec);
       new_prime.setOriginalVal(orig);
       new_prime.m_start_index = MOOSTime();
       new_prime.m_current = orig;
@@ -67,7 +68,7 @@ bool PrimeFactor::Iterate()
 {
   for( list<PrimeEntry>::iterator iter= m_primes.begin(); iter != m_primes.end();){
     PrimeEntry& current_prime = *iter;
-    current_prime.setDone(current_prime.factor(100));
+    current_prime.setDone(current_prime.factor(100000));
     if(current_prime.m_done==true){
       m_calc = m_calc + 1;
       current_prime.setCalculatedIndex(m_calc);
@@ -138,7 +139,7 @@ bool PrimeEntry::factor(unsigned long int max_steps)
     if(iter >= max_steps)
       return(false);
   }
-  for (uint64_t i = m_iterations; i<= sqrt(m_current); i = i+2){
+  for (uint64_t i = m_iterations; i<= sqrt(m_current); i = i+2){\
     iter = iter+1;
     m_iterations = m_iterations+2;
     if(iter >= max_steps)
