@@ -9,11 +9,16 @@
 #define PrimeFactor_HEADER
 
 #include "MOOS/libMOOS/MOOSLib.h"
-#include <string>
 #include <cstdint>
 #include <list>
 #include <vector>
+#include <iterator>
+#include "MBUtils.h"
 #include "PrimeEntry.h"
+#include <string>
+#include <math.h>
+#include <sstream>
+
 
 using namespace std;
 
@@ -21,7 +26,7 @@ class PrimeFactor : public CMOOSApp
 {
  public:
    PrimeFactor();
-   virtual ~PrimeFactor() {};
+   ~PrimeFactor();
 
  protected: // Standard MOOSApp functions to overload  
    bool OnNewMail(MOOSMSG_LIST &NewMail);
