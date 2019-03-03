@@ -1,3 +1,5 @@
 pExampleApp/
 pXRelayTest/
 lib_behaviors-test/
+!CMakelist.txt
+!pCommunicationsAngle_bastanfi/
