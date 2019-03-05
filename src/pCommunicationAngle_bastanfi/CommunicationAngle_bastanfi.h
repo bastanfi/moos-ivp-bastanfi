@@ -41,7 +41,7 @@ class CommunicationAngle_bastanfi : public CMOOSApp
    double calcArcLength(double dist_3d, double radius);
    double calcDist2(double theta, double radius, double s);
    double calcAngle2(double s, double radius, double angle_0);
-   double calcTL(double J,double theta_0,double c_zs);
+   double calcTL(double J,double theta_0,double c_zs, double cz_0);
    
    bool canConnect(double cz_0, double theta_0, double radius_0, double s);
    //bool pathExist(double nav_depth, double theta, double c_nav_depth);
@@ -49,6 +49,14 @@ class CommunicationAngle_bastanfi : public CMOOSApp
    std::string m_s_c_nav_x;
    std::string m_s_c_nav_y;
    std::string m_s_c_nav_depth;
+   bool m_got_nav_x;
+   bool m_got_nav_y;
+   bool m_got_nav_depth;
+   bool m_got_c_nav_x;
+   bool m_got_c_nav_y;
+   bool m_got_c_nav_depth;
+   bool m_all_inputs;
+   int m_inputs;
 
    double m_c0;
    double m_g;
