@@ -35,7 +35,7 @@ ProcessConfig = pPrimeFactor
 
 ProcessConfig = uTimerScript  
  {
-paused = falce
+paused = false
 
 event = var = NUM_VALUE, val = "112582705942171", time = 0.25
 event = var = NUM_VALUE, val = "115797848077099", time = 0.50
