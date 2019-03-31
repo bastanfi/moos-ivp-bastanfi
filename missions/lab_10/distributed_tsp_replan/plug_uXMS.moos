@@ -1,0 +1,9 @@
+ ProcessConfig = uXMS
+ {
+   AppTick   = 4
+   CommsTick = 4
+
+   VAR            = VISIT_POINT, TROUBLESHOOT, UPTDATE_PTS
+   history_var    = VISIT_POINT
+  
+ }
