@@ -8,10 +8,8 @@ ProcessConfig = uTimerScript
 
    // THE BELOW EVENT ALL ON ONE LINE IN THE ACTUAL MOOS FILE
 
+   event      = var=NODE_MESSAGE_LOCAL, val="src_node=$(VNAME),dest_node=all,var_name=TIMER_UPDATES,string_val=MY_RESET=true", time=60:90
 
-   event      = var=NODE_MESSAGE_LOCAL,val="src_node=$(VNAME),dest_node=all,var_name=MY_RESET,string_val=true", time= 0
-
-   event      = var=NODE_MESSAGE_LOCAL, val="src_node=$(VNAME),dest_node=all,var_name=UP_LOITER,string_val=ycenter_assign=$[YPOS]", time= 60:90
 
    reset_max = nolimit
    reset_time = all-posted

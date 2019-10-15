@@ -72,3 +72,13 @@ Behavior=BHV_ConstantSpeed
 	
 }
 
+Behavior=BHV_formation
+{
+    name    = box_formation
+    formation = line
+    pwt       = 100
+
+
+
+}
+

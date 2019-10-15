@@ -6,7 +6,6 @@ initialize   RETURN  = false
 initialize   STATION_KEEP = false
 initialize   LOITER  = true
 initialize   AVOID   = true
-initialize   MY_RESET = false
 
 set MODE = ACTIVE {
   DEPLOY = true
@@ -43,11 +42,10 @@ Behavior = BHV_Loiter
      clockwise = false
         radius = 8.0
      nm_radius = 15.0
-       polygon = radial:: $(LOITER_POS), radius=20, pts=8, snap=1, label=$(VNAME)_LOITER
+       polygon = radial:: x=0,y=-75, radius=20, pts=8, snap=1, label=charlie_LOITER
   visual_hints = nextpt_color=white, nextpt_lcolor=khaki
   visual_hints = edge_color=orange, vertex_color=white
   visual_hints = edge_size=1, vertex_size=2
-
 
 }
 
@@ -64,7 +62,7 @@ Behavior = BHV_Waypoint
       speed = 1.3
      radius = 3.0
   nm_radius = 15.0
-     points = $(START_POS)
+     points = 0,0
      repeat = 10
        lead = 8
 }
@@ -88,22 +86,11 @@ Behavior = BHV_StationKeep
         visual_hints = vertex_size=0, edge_color=gray50, label_color=invisible
 }
 
-
-Behavior = BHV_Timer
+Behavior = BHV_Formation
 {
-  // General Behavior Parameters
-  // ---------------------------
-  name         = bhv_timer            
-  condition    = MODE==LOITERING   
-  duration     = 900
-  endflag      = UP_LOITER = "ycenter_assign = 10"     
-  perpetual = true
-  duration_idle_decay = false
-
- 
- updates       = TIMER_UPDATES
- duration_reset = MY_RESET=true
-
+  name = formation
+  pwt = 100
+  condition = MODE==ACTIVE
 }
 
 

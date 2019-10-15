@@ -3,10 +3,14 @@
 //
 
 ServerHost = localhost
-ServerPort = $(SPORT)
-Community  = $(SNAME)
+ServerPort = 9000
+Community  = shoreside
 
-#include plug_origin_warp.moos
+MOOSTimeWarp = 5
+LatOrigin  = 43.825300 
+LongOrigin = -70.330400 
+
+
   
 //--------------------------------------------------------
 Processconfig = ANTLER
@@ -24,7 +28,40 @@ Processconfig = ANTLER
   Run = uFldNodeComms   @ NewConsole = false
 }
 
-#include plug_pShare.moos
+//---------------------------------------------------------
+// pShare Config Block  (Created from Plugin)
+
+ProcessConfig = pShare
+{
+  AppTick    = 2
+  CommsTick  = 2
+
+  input = route =  localhost:9300
+
+  // =======================================================
+  // Usage Info below
+  // =======================================================
+
+  // Simple forward of X to A on channel 8
+  // output = src_name = X,dest_name=A, route=multicast_8
+ 
+  // Simple forward of Y to B on a udp address
+  // output = src_name=Y, dest_name=B, route=localhost:9300
+ 
+  // Simple forward of Z to Z on a named address (no renaming)
+  // output = src_name = Z, route = oceanai.mit.edu:9020
+ 
+  // Setting up an input
+  // input = route = multicast_9
+  
+  //input = route = localhost:9300 & multicast_9
+
+ 
+  // Setting up lots of inputs at once
+  // input = route = "localhost:9069 & multicast_19 & multicast_65"
+}
+
+
 
 //--------------------------------------------------
 // uMAC Configuration Block
@@ -51,7 +88,6 @@ ProcessConfig = uFldShoreBroker
   QBRIDGE  = MOOS_MANUAL_OVERRIDE, APPCAST_REQ
 
   BRIDGE   = src=UP_LOITER_$N, alias=UP_LOITER
-  BRIDGE   = src=MY_RESET_$N, alias=MY_RESET
   BRIDGE   = src=HELM_MAP_CLEAR, alias=HELM_MAP_CLEAR
 }
 
@@ -151,11 +187,12 @@ ProcessConfig = uFldNodeComms
   CommsTick = 2
 
   comms_range      = 120
-  min_msg_interval = 0
+  min_msg_interval = 15
   max_msg_length   = 1000
 
   view_node_rpt_pulses = true
 
 }
+
 
 

@@ -6,7 +6,6 @@ initialize   RETURN  = false
 initialize   STATION_KEEP = false
 initialize   LOITER  = true
 initialize   AVOID   = true
-initialize   MY_RESET = false
 
 set MODE = ACTIVE {
   DEPLOY = true
@@ -48,7 +47,6 @@ Behavior = BHV_Loiter
   visual_hints = edge_color=orange, vertex_color=white
   visual_hints = edge_size=1, vertex_size=2
 
-
 }
 
 
@@ -88,24 +86,12 @@ Behavior = BHV_StationKeep
         visual_hints = vertex_size=0, edge_color=gray50, label_color=invisible
 }
 
-
-Behavior = BHV_Timer
+Behavior = BHV_Formation
 {
-  // General Behavior Parameters
-  // ---------------------------
-  name         = bhv_timer            
-  condition    = MODE==LOITERING   
-  duration     = 900
-  endflag      = UP_LOITER = "ycenter_assign = 10"     
-  perpetual = true
-  duration_idle_decay = false
-
- 
- updates       = TIMER_UPDATES
- duration_reset = MY_RESET=true
-
+  name = formation
+  pwt = 100
+  condition = MODE==ACTIVE
 }
-
 
 
 

@@ -51,7 +51,6 @@ ProcessConfig = uFldShoreBroker
   QBRIDGE  = MOOS_MANUAL_OVERRIDE, APPCAST_REQ
 
   BRIDGE   = src=UP_LOITER_$N, alias=UP_LOITER
-  BRIDGE   = src=MY_RESET_$N, alias=MY_RESET
   BRIDGE   = src=HELM_MAP_CLEAR, alias=HELM_MAP_CLEAR
 }
 
@@ -151,7 +150,7 @@ ProcessConfig = uFldNodeComms
   CommsTick = 2
 
   comms_range      = 120
-  min_msg_interval = 0
+  min_msg_interval = 15
   max_msg_length   = 1000
 
   view_node_rpt_pulses = true

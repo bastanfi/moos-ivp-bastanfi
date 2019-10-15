@@ -1,0 +1,163 @@
+//-----------------------------------------------
+// Helm Behavior file 
+
+initialize   DEPLOY  = true
+initialize   RETURN  = false
+initialize   STATION_KEEP = false
+initialize   WPT_SEEK  = true
+initialize   REFUEL_NEEDED = false
+initialize   REFUELING = false
+initialize   WPT_RECALCULATE = false
+
+set MODE = ACTIVE {
+  DEPLOY = true
+} INACTIVE
+
+set MODE = STATION-KEEPING {
+  MODE = ACTIVE
+  STATION_KEEP = true
+}                       
+
+// set MODE = WPT-RECALCULATE{
+//   MODE = ACTIVE
+//   WPT_RECALCULATE = true
+// }
+
+set MODE = RETURNING {
+  MODE = ACTIVE
+  RETURN = true
+} 
+
+set MODE = REFUEL {
+  MODE = ACTIVE
+  REFUEL_NEEDED = true
+}
+
+set MODE = STATION_KEEP_REFUELING {
+  MODE = ACTIVE
+  REFUELING = true
+}
+set MODE = WPT-SEEK {
+  MODE = ACTIVE
+  WPT_SEEK = true
+} 
+
+
+//----------------------------------------------
+Behavior = BHV_Waypoint
+{
+  name      = wpt_seek
+  pwt       = 100
+  condition = MODE==WPT-SEEK
+  endflag   = RETURN = true
+         speed = 1.2
+        points = 0,0
+        updates = UPDATE_PTS
+      perpetual = true
+
+  visual_hints = nextpt_color=white, nextpt_lcolor=khaki
+  visual_hints = vertex_color=white
+  visual_hints = edge_size=1, vertex_size=2
+}
+
+
+//----------------------------------------------
+Behavior = BHV_Waypoint
+{
+  name      = waypt_return
+  pwt       = 100
+  condition = MODE==RETURNING
+  runflag   = WPT_SEEK = false
+  endflag   = STATION_KEEP = true
+  endflag   = RETURN = false
+  endflag   = WPT_RECALCULATE = true
+  endflag   = REFUEL_NEEDED=true    
+  perpetual = true
+
+      speed = 1.2
+     radius = 3.0
+  nm_radius = 15.0
+     points = 0,0
+       lead = 8
+       slip_radius = 15
+}
+
+//----------------------------------------------
+Behavior = BHV_StationKeep
+{
+  name      = station-keep
+  pwt       = 100
+  condition = MODE==STATION-KEEPING
+
+   center_activate = true
+
+      inner_radius = 5
+      outer_radius = 10 
+       outer_speed = 1.0
+     transit_speed = 1.3
+        swing_time = 7
+      visual_hints = vertex_size=0, edge_color=gray50
+}
+
+//----------------------------------------------
+Behavior = BHV_StationKeep
+{
+  name      = refueling
+  pwt       = 100
+  condition = MODE==STATION_KEEP_REFUELING
+
+   center_activate = true
+      inner_radius = 5
+      outer_radius = 10 
+       outer_speed = 1.0
+     transit_speed = 1.3
+        swing_time = 7
+      visual_hints = vertex_size=0, edge_color=gray50
+}
+
+//----------------------------------------------
+
+ Behavior = BHV_Timer
+ {
+   // General Behavior Parameters
+   // ---------------------------
+   name         = bhv_timer            
+   condition    = MODE==STATION_KEEP_REFUELING   
+   duration     = 60 
+   endflag      = REFUELING=false           
+   perpetual = true
+   duration_idle_decay = false
+ }
+
+//----------------------------------------------
+
+ Behavior = BHV_Timer
+ {
+   // General Behavior Parameters
+   // ---------------------------
+   name         = no-refuel-needed           
+   condition    = MODE==WPT-SEEK
+   duration     = 600 
+   endflag      = REFUEL_NEEDED=true           
+   perpetual = true
+   duration_idle_decay = false
+ }
+
+//----------------------------------------------
+Behavior = BHV_Waypoint
+{
+  name      = waypt_refuel
+  pwt       = 100
+  condition = MODE==REFUEL
+  endflag   = REFUELING=true
+  endflag   = REFUEL_NEEDED=false
+  perpetual = true
+
+      speed = 1.3
+     radius = 3.0
+  nm_radius = 15.0
+     points = 0,0
+       lead = 8
+}
+
+
